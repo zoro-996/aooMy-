@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cybersecurity Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+  :root {
+    --bg: #0a0c10;
+    --surface: #0f1117;
+    --border: #1e2330;
+    --green: #00ff87;
+    --cyan: #00d4ff;
+    --orange: #ff6b35;
+    --yellow: #ffd93d;
+    --red: #ff4757;
+    --text: #e2e8f0;
+    --muted: #64748b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--cyan), var(--orange));
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--green), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  .honest-box {
+    background: #0f1a12;
+    border: 1px solid #1a3320;
+    border-left: 3px solid var(--green);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .honest-box strong { color: var(--green); }
+
+  .phase {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .phase-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .phase-time {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .phase-body { padding: 1.2rem 1.5rem; }
+
+  .task {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px dashed #1a1f2e;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .task:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .task-icon {
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+
+  .task-content strong { color: var(--cyan); display: block; margin-bottom: 0.2rem; }
+  .task-content span { color: var(--muted); font-size: 0.82rem; }
+
+  .resource-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid;
+    margin-top: 0.3rem;
+    margin-right: 0.3rem;
+  }
+
+  .tag-video { border-color: var(--orange); color: var(--orange); }
+  .tag-tool { border-color: var(--green); color: var(--green); }
+  .tag-platform { border-color: var(--cyan); color: var(--cyan); }
+  .tag-book { border-color: var(--yellow); color: var(--yellow); }
+  .tag-skip { border-color: var(--red); color: var(--red); }
+
+  .phase-1 .phase-header { border-left: 3px solid var(--green); }
+  .phase-2 .phase-header { border-left: 3px solid var(--cyan); }
+  .phase-3 .phase-header { border-left: 3px solid var(--orange); }
+  .phase-4 .phase-header { border-left: 3px solid var(--yellow); }
+
+  .skip-section {
+    margin-bottom: 2rem;
+    padding: 1.2rem 1.5rem;
+    background: #120a0a;
+    border: 1px solid #2a1515;
+    border-left: 3px solid var(--red);
+  }
+
+  .skip-section h3 {
+    font-size: 0.85rem;
+    color: var(--red);
+    margin-bottom: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .skip-item {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    align-items: flex-start;
+  }
+
+  .skip-item::before { content: '×'; color: var(--red); flex-shrink: 0; }
+
+  .golden-rule {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #0f120a;
+    border: 1px solid #2a3320;
+    text-align: center;
+  }
+
+  .golden-rule p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--green);
+    line-height: 1.8;
+  }
+
+  .golden-rule p strong { color: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Your Cybersecurity Roadmap</h1>
+    <p>// personalised from your actual resources · networking → linux → tools → labs</p>
+  </div>
+
+  <div class="honest-box">
+    <strong>Honest diagnosis:</strong> You have 7+ books, 2 YouTube courses, HTB Academy, a Google Drive course, Telegram channels, and TryHackMe/HackTheBox access. That's not a resource problem — that's a paralysis problem. This roadmap tells you exactly what to use, what to skip, and in what order.
+  </div>
+
+  <div class="skip-section">
+    <h3>// SKIP THESE (for now — you've done CN twice)</h3>
+    <div class="skip-item">Tanenbaum "Computer Networks" — great book, but not for revision. It's a full semester textbook.</div>
+    <div class="skip-item">Top-Down Approach (7th & 8th edition) — same reason. Keep as a reference dictionary only.</div>
+    <div class="skip-item">Networking for Dummies & Beginner's Guide — you are NOT a beginner.</div>
+    <div class="skip-item">Cisco Learning — relevant later for CCNA path, not now.</div>
+    <div class="skip-item">howtonetwork Network+ YouTube course — Professor Messer already covers this better.</div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase phase-1">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 01</span>
+      <span class="phase-title">Rapid Networking Revision</span>
+      <span class="phase-time">~1 week</span>
+    </div>
+    <div class="phase-body">
+      <div class="task">
+        <span class="task-icon">▶</span>
+        <div class="task-content">
+          <strong>Professor Messer N10-009 (you already started — keep going)</strong>
+          <span>Watch at 1.5× speed. Don't take notes. Just refresh. 87 short videos, ~3 hours total. Your goal: remember, not learn from scratch.</span>
+          <div><span class="resource-tag tag-video">YouTube · Professor Messer</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">🎯</span>
+        <div class="task-content">
+          <strong>After every 10 videos: open Wireshark immediately</strong>
+          <span>Capture live traffic. See TCP handshakes, DNS queries, HTTP packets in real-time. The tool makes the theory stick permanently. No setup needed on Windows/Linux.</span>
+          <div><span class="resource-tag tag-tool">Wireshark</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">📌</span>
+        <div class="task-content">
+          <strong>Only use Top-Down Approach as a lookup book</strong>
+          <span>If you watch a Professor Messer video and something confuses you — look it up there. That's its job now.</span>
+          <div><span class="resource-tag tag-book">Top-Down Approach (ref only)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase phase-2">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 02</span>
+      <span class="phase-title">Linux Fundamentals</span>
+      <span class="phase-time">~1 week (parallel with Phase 1, last few days)</span>
+    </div>
+    <div class="phase-body">
+      <div class="task">
+        <span class="task-icon">▶</span>
+        <div class="task-content">
+          <strong>Google Drive Course: Modules 3, 5, 6 (in that order)</strong>
+          <span>Module 3 = Basic Linux Commands → Module 5 = Linux Shell → Module 6 = Exploring Linux System. This is exactly the right order, and it's already in your hands.</span>
+          <div><span class="resource-tag tag-video">Google Drive Course</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">⚡</span>
+        <div class="task-content">
+          <strong>Practice every command immediately in your terminal</strong>
+          <span>Don't watch and move on. Pause after each command shown — run it yourself. If you don't have Linux, use WSL on Windows or boot a VM.</span>
+          <div><span class="resource-tag tag-tool">Terminal / WSL / VM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase phase-3">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 03</span>
+      <span class="phase-title">Nmap + Wireshark Properly</span>
+      <span class="phase-time">~1 week</span>
+    </div>
+    <div class="phase-body">
+      <div class="task">
+        <span class="task-icon">🔍</span>
+        <div class="task-content">
+          <strong>HTB Academy — Introduction to Networking module</strong>
+          <span>Now do this properly. By this point your revision is done and you'll absorb it at a cybersecurity-specific level, not academic level.</span>
+          <div><span class="resource-tag tag-platform">HTB Academy (free)</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">🔍</span>
+        <div class="task-content">
+          <strong>Nmap: scan your own local network</strong>
+          <span>Run: nmap -sV 192.168.1.0/24 on your home network. Learn what each flag does by doing it. Don't read a Nmap manual — just explore flags one by one.</span>
+          <div><span class="resource-tag tag-tool">Nmap</span><span class="resource-tag tag-book">Google Drive Module 2 (Network Scanning)</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">🔍</span>
+        <div class="task-content">
+          <strong>Wireshark: capture and analyse specific protocols</strong>
+          <span>Filter for: TCP, DNS, HTTP, ARP. See what a 3-way handshake looks like byte by byte. This is the single most powerful thing you can do for networking understanding.</span>
+          <div><span class="resource-tag tag-tool">Wireshark</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">📖</span>
+        <div class="task-content">
+          <strong>Read "Network Attacks and Exploitation" — first 3 chapters only</strong>
+          <span>Now this book makes sense because you have the context. Don't read the whole thing — just the framework and recon sections.</span>
+          <div><span class="resource-tag tag-book">Network Attacks & Exploitation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase phase-4">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 04</span>
+      <span class="phase-title">Structured Lab Practice</span>
+      <span class="phase-time">ongoing</span>
+    </div>
+    <div class="phase-body">
+      <div class="task">
+        <span class="task-icon">🟩</span>
+        <div class="task-content">
+          <strong>TryHackMe — Start here, not HackTheBox</strong>
+          <span>Do: "Pre-Security" path → "Jr Penetration Tester" path. TryHackMe holds your hand more, which is right at this stage. HackTheBox is for after.</span>
+          <div><span class="resource-tag tag-platform">TryHackMe</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">📡</span>
+        <div class="task-content">
+          <strong>Google Drive: Module 10 (Networking Fundamentals) + Module 16 (Advanced Networking)</strong>
+          <span>Do these AFTER TryHackMe Pre-Security. By then you'll understand what "advanced" actually means in practice.</span>
+          <div><span class="resource-tag tag-video">Google Drive Course</span></div>
+        </div>
+      </div>
+      <div class="task">
+        <span class="task-icon">🟥</span>
+        <div class="task-content">
+          <strong>HackTheBox Academy + Starting Point machines</strong>
+          <span>Now you're ready. Use "Starting Point" machines first — they're guided. The Telegram channels you follow (trickyhash) are good for staying updated at this stage.</span>
+          <div><span class="resource-tag tag-platform">HackTheBox</span><span class="resource-tag tag-platform">OverTheWire</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="golden-rule">
+    <p>
+      <strong>// The Golden Rule</strong><br>
+      Learn a concept → immediately use a tool to SEE it → then move on.<br>
+      Never spend more than 2 days on pure theory without hands-on practice.<br>
+      <strong>Your goal is not to memorise. It's to recognise.</strong>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

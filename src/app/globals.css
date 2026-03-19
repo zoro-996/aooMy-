@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #ffffff;
+
+  /* ================= Daily Tasks ================= */
+  --daily-tasks-accent1: #8fd3f4;
+  --daily-tasks-accent2: #84fab0;
+  --daily-tasks-accent3: #a6ffcb;
+  --daily-tasks-bg: #1A2238;
+
+  /* ================= Calendar ================= */
+  --calendar-accent1: #7f53ac;
+  --calendar-accent2: #d4418e;
+  --calendar-accent3: #ff6ec4;
+  --calendar-bg: #2D1B33;
+
+  /* ================= AI Chat ================= */
+  --ai-chat-accent1: #5f2c82;
+  --ai-chat-accent2: #49a09d;
+  --ai-chat-accent3: #00f2fe;
+  --ai-chat-bg: #0F172A;
+
+  /* ================= Progress ================= */
+  --progress-accent1: #ff7e5f;
+  --progress-accent2: #feb47b;
+  --progress-accent3: #ffd86f;
+  --progress-bg: #2C1A10;
+
+  /* ================= Data Files ================= */
+  --data-files-accent1: #43cea2;
+  --data-files-accent2: #185a9d;
+  --data-files-accent3: #00c9a7;
+  --data-files-bg: #12221A;
+
+  /* ================= Archive ================= */
+  --archive-accent1: #bdc3c7;
+  --archive-accent2: #2c3e50;
+  --archive-accent3: #95a5a6;
+  --archive-bg: #1F2937;
+}
+
+/* ================= GLOBAL BODY ================= */
+body {
+  color: var(--foreground);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+
+  /* 🔥 IMPORTANT: soft background like design */
+  background: #f3f4f6;
+}
+
+/* ================= MODULE BACKGROUNDS ================= */
+
+/* Daily Tasks */
+.bg-daily-tasks {
+  background: linear-gradient(
+    135deg,
+    var(--daily-tasks-accent1),
+    var(--daily-tasks-accent2),
+    var(--daily-tasks-accent3)
+  );
+}
+
+/* Calendar */
+.bg-calendar {
+  background: linear-gradient(
+    135deg,
+    var(--calendar-accent1),
+    var(--calendar-accent2),
+    var(--calendar-accent3)
+  );
+}
+
+/* AI Chat */
+.bg-ai-chat {
+  background: linear-gradient(
+    135deg,
+    var(--ai-chat-accent1),
+    var(--ai-chat-accent2),
+    var(--ai-chat-accent3)
+  );
+}
+
+/* Progress */
+.bg-progress {
+  background: linear-gradient(
+    135deg,
+    var(--progress-accent1),
+    var(--progress-accent2),
+    var(--progress-accent3)
+  );
+}
+
+/* Data Files */
+.bg-data-files {
+  background: linear-gradient(
+    135deg,
+    var(--data-files-accent1),
+    var(--data-files-accent2),
+    var(--data-files-accent3)
+  );
+}
+
+/* Archive */
+.bg-archive {
+  background: linear-gradient(
+    135deg,
+    var(--archive-accent1),
+    var(--archive-accent2),
+    var(--archive-accent3)
+  );
+}
+
+/* ================= GLASS CONTAINER ================= */
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border-radius: 1.5rem;
+  padding: 1.2rem;
+
+  /* 🔥 layered shadow (key for premium look) */
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ================= INNER DARK MODULE ================= */
+
+.module-container {
+  border-radius: 1.2rem;
+  padding: 1.2rem;
+  color: white;
+
+  /* 🔥 depth + inner glow */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* Individual module inner backgrounds */
+
+.module-daily-tasks {
+  background: var(--daily-tasks-bg);
+}
+
+.module-calendar {
+  background: var(--calendar-bg);
+}
+
+.module-ai-chat {
+  background: var(--ai-chat-bg);
+}
+
+.module-progress {
+  background: var(--progress-bg);
+}
+
+.module-data-files {
+  background: var(--data-files-bg);
+}
+
+.module-archive {
+  background: var(--archive-bg);
+}
+/* ================= MAIN LAYOUT FIX ================= */
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ================= GRID SYSTEM ================= */
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ================= CARD CONSISTENCY ================= */
+
+.module-card {
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  height: 260px; /* 🔥 equal height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ================= INNER ALIGNMENT ================= */
+
+.module-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* center inner UI properly */
+.module-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
